@@ -27,11 +27,14 @@ app.use('/authors', authorRoutes);
 app.use('/orders', orderRoutes);
 
 // Set the port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+app.use(cors({ origin: 'http://localhost:3000' }));
+
 
 module.exports = app;

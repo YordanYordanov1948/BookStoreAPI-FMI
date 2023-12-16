@@ -50,12 +50,13 @@ exports.updateBook = async (req, res) => {
 
 exports.deleteBook = async (req, res) => {
   try {
-      const book = await Book.findByIdAndRemove(req.params.id);
-      if (!book) {
-          return res.status(404).send({ message: "Book not found" });
-      }
-      res.send({ message: "Book deleted successfully" });
+    const book = await Book.findByIdAndDelete(req.params.id);
+    if (!book) {
+      return res.status(404).send({ message: "Book not found" });
+    }
+    res.send({ message: "Book deleted successfully" });
   } catch (err) {
-      res.status(500).send({ message: "Error deleting book" });
+    console.error(err); // Log the specific error
+    res.status(500).send({ message: "Error deleting book" });
   }
 };
